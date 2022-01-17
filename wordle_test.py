@@ -35,7 +35,7 @@ class TestGetEntropy(unittest.TestCase):
     def test_low_entropy(self):
         self.assertEqual(0, wordle.GetEntropy({'x': 4, 'y': 0, 'z': 0}))
 
-    def test_low_entropy(self):
+    def test_nonzero_entropy(self):
         self.assertAlmostEqual(
             -4 * 1.0 / 4 * -2, wordle.GetEntropy({'x': 1, 'y': 1, 'z': 1, 'w': 1})
         )

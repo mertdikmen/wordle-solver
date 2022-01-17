@@ -2,8 +2,8 @@ from collections import Counter, defaultdict
 from enum import Enum
 import logging
 import math
+import  multiprocessing as mp
 from typing import Any, Iterable
-from multiprocessing import Pool
 
 class Feedback(Enum):
     CORRECT = 1
@@ -53,7 +53,7 @@ def EvaluateGuess(guess: str, answers: set[str]) -> float:
 
 
 def FindBestGuess(guesses: Iterable[str], answers: Iterable[str]) -> tuple[str, float]:
-    with Pool(processes=multiprocessing.cpu_count()) as p:
+    with mp.Pool(processes=mp.cpu_count()) as p:
         results = p.starmap(EvaluateGuess, ([guess, answers] for guess in guesses))
     max_score = -1
     best_guess = ""
